@@ -9,11 +9,10 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class MessageDto extends Dto {
 
-    private final String content;
-    private HttpStatus status = HttpStatus.CONTINUE;
+    private String content;
+    private HttpStatus status;
 
     public boolean isError() { return this.getStatus().isError(); }
 

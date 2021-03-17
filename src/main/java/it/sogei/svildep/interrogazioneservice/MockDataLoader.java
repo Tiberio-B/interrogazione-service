@@ -30,19 +30,22 @@ public class MockDataLoader implements ApplicationRunner {
 
     private void initDepositi(int numDepositi) {
         for (int i=0; i < numDepositi; i++) {
-            databaseDeposito.put(String.valueOf(i), random.depositoCasuale());
+            DepositoDto deposito = random.depositoCasuale(i);
+            databaseDeposito.put(deposito.getId(), deposito);
         }
     }
 
     private void initTesorerie(int numTesorerie) {
         for (int i=0; i < numTesorerie; i++) {
-            databaseTesoreria.put(String.valueOf(i), random.tesoreriaCasuale());
+            TesoreriaDto tesoreria = random.tesoreriaCasuale(i);
+            databaseTesoreria.put(tesoreria.getId(), tesoreria);
         }
     }
 
     private void initRts(int numRts) {
         for (int i=0; i < numRts; i++) {
-            databaseRts.put(String.valueOf(i), random.rtsCasuale());
+            RtsDto rts = random.rtsCasuale(i);
+            databaseRts.put(rts.getId(), rts);
         }
     }
 

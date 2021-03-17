@@ -19,7 +19,10 @@ public class AuthService extends ExternalService {
 
     public UserDto ottieniUtenteAutorizzatoMock(String token, Role... requiredRoles) throws AuthorizationException {
         // UserDto userDTO = getRestTemplate().exchange(getURL(), HttpMethod.GET, setRequestAuthorization(token, requiredRoles), UserDto.class).getBody();
-        UserDto userDTO = new UserDto("Pippo", "OPERATORE_RTS_ROLE");
+        UserDto userDTO = UserDto.builder()
+                .username("Pippo")
+                .role("OPERATORE_RTS_ROLE")
+                .build();
         if (userDTO == null) throw new AuthorizationException();
         return userDTO;
     }

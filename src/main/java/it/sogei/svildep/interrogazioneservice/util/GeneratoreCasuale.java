@@ -72,8 +72,9 @@ public class GeneratoreCasuale extends Random {
 		return elementoCasuale(LoremIpsum.CITTA);
 	}
 
-	public DepositoDto depositoCasuale() {
+	public DepositoDto depositoCasuale(int id) {
 		return DepositoDto.builder()
+				.id(String.valueOf(id))
 				.cf(stringaCasuale())
 				.tipoDiritto(stringaCasuale())
 				.categoria(stringaCasuale())
@@ -88,17 +89,20 @@ public class GeneratoreCasuale extends Random {
 				.build();
 	}
 
-	public TesoreriaDto tesoreriaCasuale() {
+	public TesoreriaDto tesoreriaCasuale(int id) {
 		return TesoreriaDto.builder()
+				.id(String.valueOf(id))
 				.codice(stringaCasuale())
 				.tipoConto(stringaCasuale())
 				.numeroConto(stringaCasuale())
 				.build();
 	}
 
-	public RtsDto rtsCasuale() {
+	public RtsDto rtsCasuale(int id) {
 		return RtsDto.builder()
-				.nome(stringaCasuale())
+				.id(String.valueOf(id))
+				.denominazione(stringaCasuale())
 				.build();
 	}
+
 }
