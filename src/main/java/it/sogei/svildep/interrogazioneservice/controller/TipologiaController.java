@@ -12,26 +12,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("deposito")
+@RequestMapping
 @RequiredArgsConstructor
-public class DepositoController {
+public class TipologiaController {
 
     private final DepositoService depositoService;
     private final AuthService authService;
 
-    @GetMapping
-    public ResponseEntity<List<DepositoDto>> listaDepositi() throws SvildepException {
+    @GetMapping("tipiSoggetto")
+    public ResponseEntity<List<TipoSoggetto>> tipiSoggetto(@RequestHeader("authorization") String token) throws SvildepException {
+        authService.ottieniUtenteAutorizzatoMock(token, AuthService.Role.NOME_RUOLO_ROLE);
         return ResponseEntity.ok().body(depositoService.getAll());
-    }
-
-    @GetMapping("{cf}")
-    public ResponseEntity<List<DepositoDto>> listaDepositiPerSoggetto(@PathVariable String cf) throws SvildepException {
-        return ResponseEntity.ok().body(depositoService.getAllByCfSoggetto(cf));
-    }
-
-    @GetMapping("{numeroNazionale}")
-    public ResponseEntity<DepositoDto> getDeposito(@PathVariable String numeroNazionale) throws SvildepException {
-        DepositoDto dto = depositoService.get(numeroNazionale);
-        return ResponseEntity.status(dto == null? HttpStatus.NOT_FOUND : HttpStatus.OK).body(dto);
     }
 }
